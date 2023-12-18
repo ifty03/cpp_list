@@ -1,19 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// class Node {
-//     public:
-//     string val;
-//     Node*next;
-//     Node*prev;
-
-//     Node(string val){
-// this->val=val;
-// this->next=NULL;
-// this->prev=NULL;
-//     }
-// };
-
 int main()
 {
     list<string> myList;
@@ -33,33 +20,58 @@ int main()
 
     int n;
     cin >> n;
-    string q;
-    cin >> q;
-    getchar();
-    getline(cin, q);
-
-    auto it = find(myList.begin(), myList.end(), q);
-    
-    if(q=="prev"){
-        string previousValue = *--it;
-        // if(previousValue){
-
-        // }
-
-    }else if(q=="next"){
-
-    }else{
-        if(it == myList.end()){
-cout<<"Not Available"<<endl;
-    }else{
-        cout<<*it<<endl;
-    }
-    }
-
-    for (string val : myList)
+    auto it = myList.begin();
+    while (n--)
     {
-        cout << val << " ";
+        string q;
+        cin >> q;
+        if (q == "visit")
+        {
+
+            string h;
+            cin >> h;
+            auto it3 = find(myList.begin(), myList.end(), h);
+
+            if (it3 == myList.end())
+            {
+                cout << "Not Available" << endl;
+            }
+            else
+            {
+                it = it3;
+                cout << *it << endl;
+            }
+            // cout<<h<<endl;
+        }
+        else if (q == "prev")
+        {
+
+            if (it == myList.begin())
+            {
+                cout << "Not Available" << endl;
+            }
+            else
+            {
+                it--;
+                cout << *it << endl;
+            }
+        }
+        else if (q == "next")
+        {
+            auto it2 = myList.end();
+            it2--;
+            if (it == it2)
+            {
+                cout << "Not Available" << endl;
+            }
+            else
+            {
+                it++;
+                cout << *it << endl;
+            }
+        }
     }
+
 
     return 0;
 }
